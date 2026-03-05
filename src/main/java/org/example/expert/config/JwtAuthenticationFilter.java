@@ -51,10 +51,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
           SecurityContextHolder.getContext().setAuthentication(authToken);
         }
       } catch (ExpiredJwtException e) {
-        // 1. 만료된 경우 (가장 자주 발생함)
+
         log.error("Expired JWT token, 만료된 JWT 토큰입니다.", e);
+
       } catch (Exception e) {
-        // 2. 그 외 모든 에러 (잘못된 서명, 지원되지 않는 형식, 빈 토큰 등)
+
         log.error("Invalid JWT token, 유효하지 않은 JWT 토큰입니다. 원인: {}", e.getMessage());
       }
     }
